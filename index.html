@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naesha Sethi — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0E0E13;
+    --bg-soft: #17171F;
+    --ink: #F6F4FF;
+    --ink-soft: #B3AFC9;
+    --pink: #FF3EA5;
+    --blue: #4D8CFF;
+    --lime: #C8FF4D;
+    --purple: #B98CFF;
+    --yellow: #FFD23D;
+    --border: #0E0E13;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    overflow-x:hidden;
+  }
+
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  .display{ font-family:'Archivo Black', sans-serif; }
+
+  /* glow blobs */
+  .blob{ position:fixed; border-radius:50%; filter:blur(90px); opacity:0.28; z-index:0; pointer-events:none; }
+  .blob-1{ width:420px; height:420px; top:-160px; left:-140px; background:var(--pink); }
+  .blob-2{ width:380px; height:380px; top:180px; right:-140px; background:var(--blue); }
+  .blob-3{ width:340px; height:340px; bottom:-140px; left:20%; background:var(--lime); }
+
+  header, .marquee, main, footer{ position:relative; z-index:1; }
+
+  /* ---------- HERO ---------- */
+  header{
+    max-width:1100px;
+    margin:0 auto;
+    padding:70px 28px 20px;
+  }
+
+  .badge{
+    display:inline-block;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    background:var(--lime);
+    color:var(--bg);
+    border:2.5px solid var(--border);
+    padding:6px 14px;
+    border-radius:100px;
+    transform:rotate(-3deg);
+    box-shadow:4px 4px 0 var(--purple);
+    margin-bottom:22px;
+  }
+
+  header h1{
+    font-family:'Archivo Black', sans-serif;
+    font-size:clamp(42px, 9vw, 96px);
+    line-height:0.98;
+    margin:0;
+    letter-spacing:-0.01em;
+    color:#FBEE7A;
+  }
+
+  header h1 span{
+    color:#FBEE7A;
+  }
+
+  header .sub{
+    margin-top:20px;
+    max-width:580px;
+    font-size:18px;
+    color:var(--ink-soft);
+    line-height:1.55;
+  }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{
+    border-top:2.5px solid var(--border);
+    border-bottom:2.5px solid var(--border);
+    background:var(--pink);
+    color:var(--bg);
+    overflow:hidden;
+    white-space:nowrap;
+    margin:40px 0;
+    transform:rotate(-1deg) scale(1.03);
+  }
+
+  .marquee-track{
+    display:inline-block;
+    padding:12px 0;
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    animation: scroll 22s linear infinite;
+  }
+
+  .marquee-track span{ margin:0 26px; }
+
+  @keyframes scroll{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(-50%); }
+  }
+
+  /* ---------- FILTER CHIPS ---------- */
+  nav.tabs{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 28px 10px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  nav.tabs button{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    background:var(--bg-soft);
+    color:var(--ink);
+    border:2.5px solid var(--border);
+    outline:2.5px solid transparent;
+    padding:10px 18px;
+    border-radius:100px;
+    cursor:pointer;
+    transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+
+  nav.tabs button:hover{ transform:translateY(-2px) rotate(-1deg); }
+
+  nav.tabs button.active{
+    background:var(--ink);
+    color:var(--bg);
+  }
+
+  /* ---------- GRID ---------- */
+  main{ max-width:1100px; margin:0 auto; padding:20px 28px 10px; }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(270px, 1fr));
+    gap:30px;
+    padding:20px 0 10px;
+  }
+
+  .card{
+    background:var(--card-bg, #fff);
+    color:var(--bg);
+    border:3px solid var(--border);
+    border-radius:18px;
+    padding:22px;
+    position:relative;
+    box-shadow: 8px 8px 0 var(--card-shadow, var(--purple));
+    transform: rotate(var(--rot, -1.4deg));
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .card:hover{
+    transform: rotate(0deg) translateY(-6px);
+    box-shadow: 10px 10px 0 var(--card-shadow, var(--purple));
+  }
+
+  .card .tag{
+    align-self:flex-start;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    background:var(--bg);
+    color:#fff;
+    padding:4px 10px;
+    border-radius:100px;
+  }
+
+  .card h3{
+    margin:0;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:20px;
+    line-height:1.2;
+  }
+
+  .card p{
+    margin:0;
+    font-size:14.5px;
+    line-height:1.5;
+    opacity:0.85;
+  }
+
+  .card .links{ display:flex; flex-wrap:wrap; gap:6px; }
+
+  .card .links a{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    font-weight:600;
+    color:var(--bg);
+    background:rgba(14,14,19,0.08);
+    border:2px solid var(--border);
+    padding:4px 9px;
+    border-radius:100px;
+    text-decoration:none;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .card .links a:hover{ background:var(--bg); color:#fff; }
+
+  .card .meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    font-weight:600;
+    opacity:0.75;
+    display:flex;
+    justify-content:space-between;
+    border-top:2px dashed rgba(14,14,19,0.25);
+    padding-top:8px;
+    margin-top:auto;
+  }
+
+  .card.hidden{ display:none; }
+
+  /* category color themes */
+  .card[data-category="ecommerce"]{ --card-bg:#DCEBFF; --card-shadow: var(--blue); --rot:-1.6deg; }
+  .card[data-category="content"]{ --card-bg:#FFF3C4; --card-shadow: var(--yellow); --rot:1.2deg; }
+  .card[data-category="social"]{ --card-bg:#FFD9EC; --card-shadow: var(--pink); --rot:-1deg; }
+  .card[data-category="editorial"]{ --card-bg:#EBE1FF; --card-shadow: var(--purple); --rot:1.8deg; }
+
+  /* ---------- ABOUT (sticky note) ---------- */
+  .note{
+    margin-top:44px;
+    background:var(--lime);
+    color:var(--bg);
+    border:3px solid var(--border);
+    border-radius:18px;
+    padding:30px 32px;
+    max-width:640px;
+    transform:rotate(-1deg);
+    box-shadow:8px 8px 0 var(--pink);
+  }
+
+  .note .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    margin:0 0 10px;
+  }
+
+  .note p{ margin:0; font-size:16.5px; line-height:1.6; }
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    margin:50px 0 60px;
+    background:var(--bg-soft);
+    border:3px solid var(--border);
+    border-radius:22px;
+    padding:40px 34px;
+    text-align:center;
+  }
+
+  .contact h2{
+    font-family:'Archivo Black', sans-serif;
+    font-size:clamp(28px, 5vw, 46px);
+    margin:0 0 22px;
+    background:linear-gradient(92deg, var(--lime), var(--blue));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  .contact-links{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:16px;
+  }
+
+  .contact-links a{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size:15px;
+    text-decoration:none;
+    color:var(--bg);
+    background:var(--yellow);
+    border:2.5px solid var(--border);
+    padding:12px 24px;
+    border-radius:100px;
+    box-shadow:5px 5px 0 var(--pink);
+    transition: transform 0.15s ease;
+  }
+
+  .contact-links a:nth-child(2){ background:var(--blue); box-shadow:5px 5px 0 var(--lime); color:#fff; }
+
+  .contact-links a:hover{ transform:translateY(-3px); }
+
+  footer{
+    text-align:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    padding:10px 28px 50px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; animation:none !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<header>
+  <h1>NAESHA<br><span>SETHI</span></h1>
+  <p class="sub">content, marketing &amp; AI creative — building things people actually screenshot. equal parts strategy and chaos.</p>
+</header>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>CONTENT ✦ MARKETING ✦ AI WORKFLOWS ✦ SOCIAL STRATEGY ✦ MEMES ✦ BRAND STORYTELLING ✦</span>
+    <span>CONTENT ✦ MARKETING ✦ AI WORKFLOWS ✦ SOCIAL STRATEGY ✦ MEMES ✦ BRAND STORYTELLING ✦</span>
+  </div>
+</div>
+
+<nav class="tabs" id="tabs">
+  <button class="active" data-filter="all">All</button>
+  <button data-filter="ecommerce">AI &amp; E-commerce</button>
+  <button data-filter="content">Brand Content</button>
+  <button data-filter="social">Social &amp; Community</button>
+  <button data-filter="editorial">Editorial Design</button>
+</nav>
+
+<main>
+  <div class="grid" id="catalogue">
+    <div class="card" data-category="ecommerce">
+      <span class="tag">🛒 e-comm</span>
+      <h3>Hastak Papad — AI-Powered Amazon Listings</h3>
+      <p>Built an AI-assisted creative pipeline (ChatGPT, Gemini, Google Flow, Canva) to turn a traditional papad brand into a premium Amazon storefront — hero image, brand heritage creative, benefits &amp; ingredient infographics, lifestyle visuals, and a product showcase video concept.</p>
+      <div class="links"><a href="https://amzn.in/d/03jzo50o" target="_blank" rel="noopener">Amazon Listing</a></div>
+      <div class="meta"><span>Freelance Marketing &amp; AI Creative Consultant</span><span>2026</span></div>
+    </div>
+
+    <div class="card" data-category="content">
+      <span class="tag">🚗 brand content</span>
+      <h3>Cars24 Australia — Content &amp; Brand</h3>
+      <p>Owned the Web Stories section for the company blog end-to-end (design direction, templates, content). Wrote news &amp; advice-led articles, ran LinkedIn scheduling and content ideation, and supported influencer campaigns on Instagram &amp; TikTok alongside AI video experiments.</p>
+      <div class="links">
+        <a href="https://www.cars24.com.au/car-advice/5-car-must-haves-to-keep-in-your-vehicle-at-all-times/" target="_blank" rel="noopener">Blog: Car must-haves</a>
+        <a href="https://www.cars24.com.au/car-advice/find-the-right-tyre-pressure-for-your-car/" target="_blank" rel="noopener">Blog: Tyre pressure</a>
+        <a href="https://www.cars24.com.au/car-news/mazda-recalls-cx70-cx-80-cx90-austrlia-2025/" target="_blank" rel="noopener">Blog: Mazda recall</a>
+        <a href="https://www.cars24.com.au/car-news/top-mercedes-ev-concepts/" target="_blank" rel="noopener">Blog: Mercedes EVs</a>
+        <a href="https://www.linkedin.com/posts/cars24australia_cars24-activity-7380859647815159808-UI6H" target="_blank" rel="noopener">LinkedIn post</a>
+        <a href="https://www.linkedin.com/posts/cars24australia_cars24-busting-myths-activity-7389618446252048384-n4y5" target="_blank" rel="noopener">LinkedIn: myth-busting</a>
+        <a href="https://www.instagram.com/reel/DQtaSRdkh1I/" target="_blank" rel="noopener">Instagram reel</a>
+        <a href="https://www.instagram.com/reel/DP3L6kdAYm3/" target="_blank" rel="noopener">Instagram reel 2</a>
+        <a href="https://www.tiktok.com/@cars24au/video/7579143887403420935" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.tiktok.com/@cars24au/video/7572078574400720146" target="_blank" rel="noopener">TikTok 2</a>
+      </div>
+      <div class="meta"><span>Content Intern → Brand Intern</span><span>2025</span></div>
+    </div>
+
+    <div class="card" data-category="social">
+      <span class="tag">🫠 meme page</span>
+      <h3>Brainrot Instagram Page — Meme &amp; Content</h3>
+      <p>Co-created a completely unserious meme page with friends, built on college-life chaos and inside jokes. Started as pure fun and turned into an accidental crash course in internet humour, relatability, and what actually gets shared at 2am.</p>
+      <div class="links"><a href="https://www.instagram.com/cans.dimagrot/" target="_blank" rel="noopener">Instagram page</a></div>
+      <div class="meta"><span>Co-creator</span><span>2024–2026</span></div>
+    </div>
+
+    <div class="card" data-category="social">
+      <span class="tag">🎙️ community</span>
+      <h3>Q.E.D. — Gargi College Debating Society</h3>
+      <p>Independently ran the society's Instagram presence — ideation, editing, design, and publishing for both static posts and reels covering event promos, updates, competitions, and engagement content.</p>
+      <div class="links">
+        <a href="https://www.instagram.com/p/DBqF72aCpCs/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener">Post</a>
+        <a href="https://www.instagram.com/p/DLWzkWJSy9N/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener">Post 2</a>
+        <a href="https://www.instagram.com/reel/DJcf4b8zLHC/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener">Reel</a>
+        <a href="https://www.instagram.com/reel/DIdIvgxSEzj/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener">Reel 2</a>
+      </div>
+      <div class="meta"><span>Vice-President, 2024–25 · Social Media &amp; Content</span><span>2024–2025</span></div>
+    </div>
+
+    <div class="card" data-category="editorial">
+      <span class="tag">📖 editorial</span>
+      <h3>Sweet Sixteen — Personalised Magazine</h3>
+      <p>Art-directed and laid out a full Vogue-style keepsake magazine as a birthday gift — cover concept, table of contents, section dividers, pull quotes, mood-board spreads, and a consistent editorial type system across a dozen-plus pages. Personal photos and family details from the original are kept private and aren't reproduced here.</p>
+      <div class="meta"><span>Editorial design · Canva</span><span>2025</span></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <p class="eyebrow">✦ about me ✦</p>
+    <p>I make things for a living, and things for no reason at all, and the line between the two is blurrier than I'd like to admit. Some days that means prompting an AI into designing an Amazon listing; other days it means running a meme page that exists purely to make my friends laugh at 2am. Currently prototyping the version of me that's good at both.</p>
+  </div>
+
+  <div class="contact">
+    <h2>let's make something</h2>
+    <div class="contact-links">
+      <a href="mailto:naesha.sethi@gmail.com">✉ naesha.sethi@gmail.com</a>
+      <a href="https://www.instagram.com/naeshasethi" target="_blank" rel="noopener">📸 @naeshasethi</a>
+    </div>
+  </div>
+</main>
+
+<footer>© 2026 Naesha Sethi — made with chaos &amp; good taste</footer>
+
+<script>
+  const TABS = document.getElementById('tabs');
+
+  TABS.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if(!btn) return;
+    TABS.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.card').forEach(card => {
+      const show = filter === 'all' || card.dataset.category === filter;
+      card.classList.toggle('hidden', !show);
+    });
+  });
+</script>
+
+</body>
+</html>
